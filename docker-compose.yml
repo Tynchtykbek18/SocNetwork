@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/manasgramback
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: 'postgres:latest'
+    environment:
+      NAME: "bil382"
+      USER: "tynchtyk"
+      PASSWORD: "tynch18"
+      HOST: "db"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data:rw
+
+  redis:
+    image: redis:latest
+
+#volumes:
+#  postgres_data: { }
